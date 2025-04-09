@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>虛擬算命 - 第1頁</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 虛擬框容器，會根據視窗高度自動調整大小，保持固定比例 -->
+    <div class="virtual-frame">
+        <div class="background-container">
+            <!-- 鵝黃色橫式背景 -->
+            <div class="horizontal-background"></div>
+
+            <!-- 直式背景 -->
+            <div class="vertical-background" id="bg1" style="background-image: url('images/bg1.png');"></div>
+            <div class="vertical-background" id="bg2" style="background-image: url('images/bg2.png');"></div>
+        </div>
+
+        <!-- 顯示圖片 -->
+        <div class="talk-box">
+            <img src="images/talk (1).png" id="talk1" class="talk-img">
+            <img src="images/talk (2).png" id="talk2" class="talk-img">
+            <img src="images/talk (3).png" id="talk3" class="talk-img">
+        </div>
+
+        <div class="ripple-container">
+            <button id="try-img" class="try-button">
+              <img src="images/try.png" alt="嘗試一下" class="try-image" />
+            </button>
+            <span class="ripple-line"></span>
+            <span class="ripple-line"></span>
+            <span class="ripple-line"></span>
+            <span class="ripple-line"></span>
+          </div>
+          
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

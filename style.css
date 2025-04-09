@@ -1,0 +1,147 @@
+/* 讓 body 和 html 高度充滿視窗，並禁止滾動條 */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* 禁用外部滾動條 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff; /* 鵝黃色背景 */
+}
+
+/* 虛擬框，保持寬高比例（1125px : 2255px） */
+.virtual-frame {
+    width: 100%; /* 寬度隨視窗寬度變動 */
+    height: 80vh; /* 高度根據視窗高度的 80% */
+    max-width: calc(80vh * (1125 / 2255)); /* 根據視窗高度比例調整寬度 */
+    position: relative;
+    overflow: hidden; /* 保證內部內容不會超出框 */
+}
+
+/* 背景容器，頂部固定對齊 */
+.background-container {
+    position: absolute; /* 保證背景不會跟隨滾動 */
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* 直式背景，會隨視窗變動大小，保持比例 */
+.vertical-background {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* 背景覆蓋 */
+    background-position: center;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+}
+
+#bg1 {
+    opacity: 1; /* 初始顯示 bg1 */
+}
+
+/* 顯示圖片 */
+.talk-img {
+    position: absolute; /* 根據虛擬框進行絕對定位 */
+    opacity: 0; /* 初始隱藏 */
+    transition: opacity 1s, transform 1s ease-out; /* 調整 transform 動畫效果 */
+}
+
+/* 定位圖片1的位置，根據虛擬框內的固定位置 */
+#talk1 {
+    left: 6%; /* 根據虛擬框的定位來設置左邊距 */
+    top: 55%;  /* 初始設置 top 屬性 */
+    width: 69%; /* 設定寬度為原始圖片寬度的 60% */
+}
+
+/* 定位圖片2的位置 */
+#talk2 {
+    left: 35%; /* 根據虛擬框的定位來設置左邯距 */
+    top: 64%; /* 初始設置 top 屬性 */
+    width: 60%; /* 設定寬度為原始圖片寬度的 60% */
+}
+
+/* 定位圖片3的位置 */
+#talk3 {
+    left: 6%; /* 根據虛擬框的定位來設置左邊距 */
+    width: 69%; /* 設定寬度為原始圖片寬度的 60% */
+    top: 80%; /* 初始設置 top 屬性 */
+}
+
+/* 開始按鈕與漣漪容器 */
+.ripple-container {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 10;
+  }
+  
+  /* 按鈕圖 */
+ .try-button {
+  position: relative;
+  width: 130px; /* 寬高可調整 */
+  height: 130px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  overflow: visible;
+}
+
+.try-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 130%;
+  transform: translate(-50%, -50%);
+}
+  
+.ripple-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 170px;
+  height: 35px;
+  border-radius: 8px;
+  border: 3px solid rgb(0 0 0 / 50%);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0.8;
+  animation: ripple 3s infinite ease-out;
+  pointer-events: none;
+}
+
+.ripple-line:nth-child(2) { animation-delay: 0s; }
+.ripple-line:nth-child(3) { animation-delay: 0.6s; }
+.ripple-line:nth-child(4) { animation-delay: 1.2s; }
+.ripple-line:nth-child(5) { animation-delay: 1.8; }
+.ripple-line:nth-child(6) { animation-delay: 2.4s; }
+
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.8;
+    border-width: 2px;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.4,1.6); /* 調小放大倍率 */
+    opacity: 0;
+    border-width: 0.2px;
+  }
+}
+  /* 顯示動畫時加上 active */
+  .ripple-container.active {
+    opacity: 1;
+  }
+  
